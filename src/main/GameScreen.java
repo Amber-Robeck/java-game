@@ -4,6 +4,7 @@ import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
@@ -14,10 +15,14 @@ public class GameScreen extends JPanel {
 	private Random random;
 	private BufferedImage img;
 	
+	private Dimension size;
+	
 	private ArrayList<BufferedImage> sprites = new ArrayList<>();
 
 	public GameScreen(BufferedImage img) {
 		this.img = img;
+		
+		setPanelSize();
 		
 		loadSprites();
 		
@@ -25,6 +30,16 @@ public class GameScreen extends JPanel {
 	}
 	
 	
+	private void setPanelSize() {
+		size = new Dimension(640,640);
+		setMinimumSize(size);
+		setPreferredSize(size);
+		setMaximumSize(size);
+		
+		
+	}
+
+
 	private void loadSprites() {
 		
 		for (int y = 0; y<3; y++) {

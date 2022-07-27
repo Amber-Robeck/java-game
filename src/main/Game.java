@@ -20,12 +20,12 @@ public class Game extends JFrame implements Runnable {
 		
 		importImg();
 		
-		setSize(640, 640);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
 		
 		gameScreen = new GameScreen(img);
 		add(gameScreen);
+		pack();
 		setVisible(true);
 		
 	}
