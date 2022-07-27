@@ -13,7 +13,6 @@ import inputs.ThisMouseListener;
 public class Game extends JFrame implements Runnable {
 	
 	private GameScreen gameScreen;
-	private BufferedImage img;
 	private Thread gameThread;
 	
 	private final double FPS_SET = 120.0;
@@ -23,13 +22,11 @@ public class Game extends JFrame implements Runnable {
 	private KeyboardListener keyboardListener;
 	
 	public Game() {
-		
-		importImg();
-		
+	
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
 		
-		gameScreen = new GameScreen(img);
+		gameScreen = new GameScreen(this);
 		add(gameScreen);
 		pack();
 		setVisible(true);
@@ -45,18 +42,6 @@ public class Game extends JFrame implements Runnable {
 		addKeyListener(keyboardListener);
 		
 		requestFocus();
-	}
-	
-	private void importImg() {
-		
-		InputStream is = getClass().getResourceAsStream("/spriteatlas.png");
-		
-		try {
-			img = ImageIO.read(is);
-			
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 	}
 	
 	private void start() {
