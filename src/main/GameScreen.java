@@ -1,22 +1,83 @@
 package main;
 
+import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+import java.util.Random;
 
 public class GameScreen extends JPanel {
+	
+	private Random random;
+	private BufferedImage img;
+	
+	private ArrayList<BufferedImage> sprites = new ArrayList<>();
 
-	public GameScreen() {
+	public GameScreen(BufferedImage img) {
+		this.img = img;
 		
+		loadSprites();
+		
+		random = new Random();
 	}
 	
 	
+	private void loadSprites() {
+		
+		for (int y = 0; y<3; y++) {
+			for(int x = 0; x<9; x++) {
+				sprites.add(img.getSubimage(x*32, y*32, 32, 32));
+			}
+		}
+		
+	}
+
+
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		
-		g.setColor(Color.GREEN);
-		g.drawRect(50, 50, 100, 100);
 		
+		for(int y=0; y<20; y++) {
+			for(int x=0; x<20; x++) {
+				
+				g.drawImage(sprites.get(getRandomInt()), x*32, y*32, null);
+			}
+		}
+		
+		
+		
+//		g.drawImage(sprites.get(7), 20, 20, null);
+		
+		//orc
+//		g.drawImage(sprites.get(9), 20, 20, null);
+		
+		//orc
+//		g.drawImage(img.getSubimage(0, 32, 32, 32), 0, 0, null);
+		
+//		g.setColor(Color.GREEN);
+//		g.drawRect(50, 50, 100, 100);
+		
+//		for(int y=0; y<20; y++) {
+//			for(int x=0; x<20; x++) {
+//				g.setColor(getRandomColor());
+//				g.drawRect(x*32, y*32, 32, 32);
+//			}
+//		}
+		
+	}
+	
+	private int getRandomInt() {
+		return random.nextInt(27);
+	}
+	
+	private Color getRandomColor() {
+		int r = random.nextInt(256);
+		int g = random.nextInt(256);
+		int b = random.nextInt(256);
+		
+		return new Color(r, g, b);
 	}
 }
