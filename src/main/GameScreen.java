@@ -13,11 +13,6 @@ public class GameScreen extends JPanel {
 	
 	private Random random;
 	private BufferedImage img;
-	private long lastTime;
-	private int frames;
-	
-//	private double timePerFrame;
-//	private long lastFrame;
 	
 	private ArrayList<BufferedImage> sprites = new ArrayList<>();
 
@@ -27,8 +22,6 @@ public class GameScreen extends JPanel {
 		loadSprites();
 		
 		random = new Random();
-		
-//		timePerFrame = 1000000000.0/60.0;
 	}
 	
 	
@@ -54,27 +47,9 @@ public class GameScreen extends JPanel {
 			}
 		}
 		
-//		if(System.nanoTime() - lastFrame >= timePerFrame) {
-//
-//			lastFrame = System.nanoTime();
-//			repaint();
-//		}else {
-//			//we do nothing
-//		}
-		
-		callFPS();
-		
 	}
+
 		
-		private void callFPS() {
-			frames++;
-			if(System.currentTimeMillis() - lastTime >= 1000) {
-				System.out.println("FPS: " + frames);
-				frames = 0;
-				lastTime = System.currentTimeMillis();
-			}
-			
-		}
 		
 	
 	private int getRandomInt() {
@@ -88,4 +63,5 @@ public class GameScreen extends JPanel {
 		
 		return new Color(r, g, b);
 	}
+
 }
