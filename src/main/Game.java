@@ -7,6 +7,9 @@ import java.io.InputStream;
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 
+import inputs.KeyboardListener;
+import inputs.ThisMouseListener;
+
 public class Game extends JFrame implements Runnable {
 	
 	private GameScreen gameScreen;
@@ -15,6 +18,9 @@ public class Game extends JFrame implements Runnable {
 	
 	private final double FPS_SET = 120.0;
 	private final double UPS_SET = 60.0;
+	
+	private ThisMouseListener thisMouseListener;
+	private KeyboardListener keyboardListener;
 	
 	public Game() {
 		
@@ -28,6 +34,17 @@ public class Game extends JFrame implements Runnable {
 		pack();
 		setVisible(true);
 		
+	}
+	
+	private void initInputs() {
+		thisMouseListener = new ThisMouseListener();
+		keyboardListener = new KeyboardListener();
+		
+		addMouseListener(thisMouseListener);
+		addMouseMotionListener(thisMouseListener);
+		addKeyListener(keyboardListener);
+		
+		requestFocus();
 	}
 	
 	private void importImg() {
@@ -59,6 +76,7 @@ public class Game extends JFrame implements Runnable {
 		System.out.println("Start of the game");
 		
 		Game game = new Game();
+		game.initInputs();
 		game.start();
 	}
 
