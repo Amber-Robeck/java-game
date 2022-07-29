@@ -10,7 +10,7 @@ public class GameScene {
 		this.game = game;
 	}
 	
-	public game getGame() {
+	public Game getGame() {
 		return game;
 	}
 }

@@ -1,14 +1,12 @@
 package main;
 
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.io.InputStream;
-
-import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 
 import inputs.KeyboardListener;
 import inputs.ThisMouseListener;
+import sceens.Menu;
+import sceens.Playing;
+import sceens.Settings;
 
 public class Game extends JFrame implements Runnable {
 	
@@ -21,18 +19,33 @@ public class Game extends JFrame implements Runnable {
 	private ThisMouseListener thisMouseListener;
 	private KeyboardListener keyboardListener;
 	
+	private Render render;
+	private Menu menu;
+	private Playing playing;
+	private Settings settings;
+	
 	public Game() {
 	
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
 		
-		gameScreen = new GameScreen(this);
+		initClasses();
+		
 		add(gameScreen);
 		pack();
 		setVisible(true);
 		
 	}
 	
+	private void initClasses() {
+		render = new Render(this);
+		gameScreen = new GameScreen(this);
+		menu = new Menu(this);
+		playing = new Playing(this);
+		settings = new Settings(this);
+		
+	}
+
 	private void initInputs() {
 		thisMouseListener = new ThisMouseListener();
 		keyboardListener = new KeyboardListener();
@@ -109,8 +122,27 @@ public class Game extends JFrame implements Runnable {
 			
 		}
 		
-		
-		
+	}
+	
+	//Getters and Setters
+	
+	public Render getRender() {
+		return render;
 	}
 
+	public Menu getMenu() {
+		return menu;
+	}
+
+	public Playing getPlaying() {
+		return playing;
+	}
+
+	public Settings getSettings() {
+		return settings;
+	}
+
+
+	
+	
 }
