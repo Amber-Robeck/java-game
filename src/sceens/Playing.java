@@ -1,5 +1,6 @@
 package sceens;
 
+import java.awt.Color;
 import java.awt.Graphics;
 
 import main.Game;
@@ -12,7 +13,9 @@ public class Playing extends GameScene implements SceneMethods {
 
 	@Override
 	public void render(Graphics g) {
-		// TODO Auto-generated method stub
+		
+		g.setColor(Color.red);
+		g.fillRect(0, 0, 640, 640);
 		
 	}
 
