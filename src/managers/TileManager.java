@@ -3,11 +3,12 @@ package managers;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
+import helperMethods.LoadSave;
 import objects.Tile;
 
 public class TileManager {
 	
-	public Tile GRASS, WATER, ROAD;
+	public Tile GRASS, WATER, ROAD, TURNROAD;
 	public BufferedImage atlas;
 	public ArrayList<Tile> tiles = new ArrayList<>();
 	
@@ -22,11 +23,11 @@ public class TileManager {
 		tiles.add(GRASS = new Tile(getSprite(9, 0)));
 		tiles.add(WATER = new Tile(getSprite(0, 0)));
 		tiles.add(ROAD = new Tile(getSprite(8, 0)));
-		
+		tiles.add(TURNROAD = new Tile(getSprite(7, 0)));
 	}
 
 	private void loadAtlas() {
-		
+		atlas = LoadSave.getSpriteAtlas();
 	}
 	
 	public BufferedImage getSprite(int id) {
