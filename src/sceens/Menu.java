@@ -11,6 +11,7 @@ import javax.imageio.ImageIO;
 
 import main.Game;
 import userInterface.MyButton;
+import static main.GameStates.*;
 
 public class Menu extends GameScene implements SceneMethods{
 
@@ -80,4 +81,13 @@ public class Menu extends GameScene implements SceneMethods{
 	private int getRandomInt() {
 		return random.nextInt(27);
 	}
+
+	@Override
+	public void mouseClicked(int x, int y) {
+		if(buttonPlaying.getBounds().contains(x, y)) {
+			SetGameState(PLAYING);
+		}
+		
+	}
+
 }
