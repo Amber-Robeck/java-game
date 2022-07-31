@@ -9,6 +9,7 @@ public class MyButton {
 	private int x, y, width, height;
 	private String text;
 	private Rectangle bounds;
+	private boolean mouseOver;
 	
 	public MyButton(String text, int x, int y, int width, int height) {
 		this.text = text;
@@ -29,8 +30,7 @@ public class MyButton {
 	public void draw(Graphics g) {
 		
 		//button body
-		g.setColor(Color.white);
-		g.fillRect(x, y, width, height);
+		drawBody(g);
 		
 		//button border
 		g.setColor(Color.BLACK);
@@ -41,12 +41,26 @@ public class MyButton {
 		
 	}
 	
+	private void drawBody(Graphics g) {
+		if(mouseOver) 
+			g.setColor(Color.GRAY);
+		else
+			g.setColor(Color.white);
+		g.fillRect(x, y, width, height);
+		
+		
+	}
+
 	private void drawtext(Graphics g) {
 		//width and height of input string
 		int w = g.getFontMetrics().stringWidth(text);
 		int h = g.getFontMetrics().getHeight();
 		g.drawString(text, x - w / 2 + width / 2, y + h / 2 + height / 2);
 		
+	}
+	
+	public void setMouseOver(boolean mouseOver) {
+		this.mouseOver = mouseOver;
 	}
 
 	public Rectangle getBounds() {
