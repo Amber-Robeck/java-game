@@ -1,4 +1,4 @@
-package sceens;
+package scenes;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;

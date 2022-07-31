@@ -4,9 +4,9 @@ import javax.swing.JFrame;
 
 import inputs.KeyboardListener;
 import inputs.ThisMouseListener;
-import sceens.Menu;
-import sceens.Playing;
-import sceens.Settings;
+import scenes.Menu;
+import scenes.Playing;
+import scenes.Settings;
 
 public class Game extends JFrame implements Runnable {
 	
