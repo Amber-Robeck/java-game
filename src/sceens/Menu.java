@@ -10,6 +10,8 @@ import java.util.Random;
 import javax.imageio.ImageIO;
 
 import main.Game;
+import userInterface.MyButton;
+import static main.GameStates.*;
 
 public class Menu extends GameScene implements SceneMethods{
 
@@ -17,28 +19,46 @@ public class Menu extends GameScene implements SceneMethods{
 	private ArrayList<BufferedImage> sprites = new ArrayList<>();
 	private Random random;
 	
-		public Menu(Game game) {
+	private MyButton buttonPlaying, buttonSettings, buttonQuit;
+	
+	public Menu(Game game) {
 			super(game);
 			random = new Random();
 			importImg();
 			loadSprites();
-		}
+			initButtons();
+	}
 
-		@Override
-		public void render(Graphics g) {
-			for(int y=0; y<20; y++) {
-				for(int x=0; x<20; x++) {
-					
-					g.drawImage(sprites.get(getRandomInt()), x*32, y*32, null);
-				}
-			}
+	private void initButtons() {
+		buttonPlaying = new MyButton("Play", 100, 100, 100, 30);
 			
-		}
+	}
+
+	@Override
+	public void render(Graphics g) {
+			
+		drawButtons(g);
+			
+			
+//			loop for all sprites
+//			for(int y=0; y<20; y++) {
+//				for(int x=0; x<20; x++) {
+//					
+//					g.drawImage(sprites.get(getRandomInt()), x*32, y*32, null);
+//				}
+//			}
+//			
+	}
 		
 		
-		private void importImg() {
+	private void drawButtons(Graphics g) {
+			buttonPlaying.draw(g);
 			
-			InputStream is = getClass().getResourceAsStream("/spriteatlas.png");
+	}
+
+	private void importImg() {
+			
+		InputStream is = getClass().getResourceAsStream("/spriteatlas.png");
 			
 			try {
 				img = ImageIO.read(is);
@@ -46,19 +66,28 @@ public class Menu extends GameScene implements SceneMethods{
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-		}
+	}
 		
-		private void loadSprites() {
+	private void loadSprites() {
 			
-			for (int y = 0; y<3; y++) {
-				for(int x = 0; x<9; x++) {
-					sprites.add(img.getSubimage(x*32, y*32, 32, 32));
+		for (int y = 0; y<3; y++) {
+			for(int x = 0; x<9; x++) {
+				sprites.add(img.getSubimage(x*32, y*32, 32, 32));
 				}
 			}
 			
+	}
+		
+	private int getRandomInt() {
+		return random.nextInt(27);
+	}
+
+	@Override
+	public void mouseClicked(int x, int y) {
+		if(buttonPlaying.getBounds().contains(x, y)) {
+			SetGameState(PLAYING);
 		}
 		
-		private int getRandomInt() {
-			return random.nextInt(27);
-		}
+	}
+
 }
