@@ -68,14 +68,36 @@ public class ThisMouseListener implements MouseListener, MouseMotionListener {
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
+		switch(GameStates.gameState) {
+		case MENU:
+				game.getMenu().mousePressed(e.getX(), e.getY());
+			break;
+		case PLAYING:
+			break;
+		case SETTINGS:
+			break;
+		default:
+			break;
+		
+		}
 		
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
+		switch(GameStates.gameState) {
+		case MENU:
+				game.getMenu().mouseReleased(e.getX(), e.getY());
+			break;
+		case PLAYING:
+			break;
+		case SETTINGS:
+			break;
+		default:
+			break;
 		
+		}	
+
 	}
 
 	@Override
