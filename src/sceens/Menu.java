@@ -30,8 +30,17 @@ public class Menu extends GameScene implements SceneMethods{
 	}
 
 	private void initButtons() {
-		buttonPlaying = new MyButton("Play", 100, 100, 100, 30);
-			
+		
+		int w = 150;
+		int h = w / 3;
+		int x = 640 / 2 - w / 2;
+		int y = 150;
+		int yOffset = 100;
+		
+		
+		buttonPlaying = new MyButton("Play", x, y, w, h);
+		buttonSettings = new MyButton("Settings", x, y + yOffset, w, h);
+		buttonQuit = new MyButton("Quit", x, y + yOffset * 2, w, h);
 	}
 
 	@Override
@@ -53,6 +62,8 @@ public class Menu extends GameScene implements SceneMethods{
 		
 	private void drawButtons(Graphics g) {
 			buttonPlaying.draw(g);
+			buttonSettings.draw(g);
+			buttonQuit.draw(g);
 			
 	}
 
@@ -86,6 +97,10 @@ public class Menu extends GameScene implements SceneMethods{
 	public void mouseClicked(int x, int y) {
 		if(buttonPlaying.getBounds().contains(x, y)) {
 			SetGameState(PLAYING);
+		} else if (buttonSettings.getBounds().contains(x, y)) {
+			SetGameState(SETTINGS);
+		} else if (buttonQuit.getBounds().contains(x, y)) {
+			System.exit(0);
 		}
 		
 	}
@@ -94,8 +109,15 @@ public class Menu extends GameScene implements SceneMethods{
 	public void mouseMoved(int x, int y) {
 		//reset hover
 		buttonPlaying.setMouseOver(false);
+		buttonSettings.setMouseOver(false);
+		buttonQuit.setMouseOver(false);
+		
 		if(buttonPlaying.getBounds().contains(x, y)) {
 			buttonPlaying.setMouseOver(true);
+		} else if (buttonSettings.getBounds().contains(x, y)) {
+			buttonSettings.setMouseOver(true);
+		} else if (buttonQuit.getBounds().contains(x, y)) {
+			buttonQuit.setMouseOver(true);
 		}
 		
 	}
@@ -105,6 +127,10 @@ public class Menu extends GameScene implements SceneMethods{
 		//reset in mouse released
 		if(buttonPlaying.getBounds().contains(x, y)) {
 			buttonPlaying.setMousePressed(true);
+		} else if (buttonSettings.getBounds().contains(x, y)) {
+			buttonSettings.setMousePressed(true);
+		} else if (buttonQuit.getBounds().contains(x, y)) {
+			buttonQuit.setMousePressed(true);
 		}
 		
 	}
@@ -117,7 +143,8 @@ public class Menu extends GameScene implements SceneMethods{
 
 	private void resetButtons() {
 		buttonPlaying.resetBooleans();
-		
+		buttonSettings.resetBooleans();
+		buttonQuit.resetBooleans();
 	}
 
 }
