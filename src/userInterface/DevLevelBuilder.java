@@ -2,6 +2,8 @@ package userInterface;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 import objects.Tile;
@@ -48,7 +50,8 @@ public class DevLevelBuilder {
 		int i=0;
 		
 		for(Tile tile: playing.getTileManager().tiles) {
-			tileButtons.add(new MyButton(tile.getName(), xStart + xOffset *i++, yStart, w, h));
+			tileButtons.add(new MyButton(tile.getName(), xStart + xOffset *i, yStart, w, h, i));
+			i++;
 		}
 		
 	}
@@ -56,12 +59,23 @@ public class DevLevelBuilder {
 	private void drawButtons(Graphics g) {
 		buttonMenu.draw(g);
 		
-		//draw tiles in development bar
-		for(MyButton b : tileButtons)
-			b.draw(g);
+		
+	//draw tiles in development bar
+		drawTileButtons(g);
 		
 	}
 	
+	private void drawTileButtons(Graphics g) {
+		for(MyButton b : tileButtons)
+			g.drawImage(getButtonImg(b.getId()), b.x, b.y, b.width, b.height, null);
+		
+		
+	}
+
+	private BufferedImage getButtonImg(int id) {
+		return playing.getTileManager().getSprite(id);
+	}
+
 	public void mouseClicked(int x, int y) {
 		System.out.println("clicked");
 		if (buttonMenu.getBounds().contains(x, y))
