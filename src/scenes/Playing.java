@@ -13,17 +13,20 @@ public class Playing extends GameScene implements SceneMethods {
 	private int[][] level;
 	private TileManager tileManager;
 	
+	private MyButton buttonMenu;
+	
 	private DevLevelBuilder devLevelBuilder;
 	
 	public Playing(Game game) {
 		super(game);
+		
 		
 		//The Level
 		level = LevelBuilder.getLevelData();
 		//Tile manager
 		tileManager = new TileManager();
 		//Level builder
-		devLevelBuilder = new DevLevelBuilder(0, 640, 640, 100);
+		devLevelBuilder = new DevLevelBuilder(0, 640, 640, 100, this);
 		
 	}
 
@@ -41,28 +44,40 @@ public class Playing extends GameScene implements SceneMethods {
 		devLevelBuilder.draw(g);
 	}
 
+	public TileManager getTileManager() {
+		return tileManager;
+	}
 
 	@Override
 	public void mouseClicked(int x, int y) {
-		// TODO Auto-generated method stub
+		System.out.println("clicked");
+		devLevelBuilder.mouseClicked(x,y);
+//		if(y >= 640) {
+//			devLevelBuilder.mouseClicked(x,y);
+//		}
 		
 	}
 
 	@Override
 	public void mouseMoved(int x, int y) {
-		// TODO Auto-generated method stub
+		if(y >= 640) {
+			devLevelBuilder.mouseMoved(x,y);
+		}
 		
 	}
 
 	@Override
 	public void mousePressed(int x, int y) {
-		// TODO Auto-generated method stub
+		if(y >= 640) {
+			devLevelBuilder.mousePressed(x,y);
+		}
 		
 	}
 
 	@Override
 	public void mouseReleased(int x, int y) {
-		// TODO Auto-generated method stub
+		
+		devLevelBuilder.mouseReleased(x,y);
 		
 	}
 
