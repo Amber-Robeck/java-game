@@ -5,12 +5,15 @@ import java.awt.Graphics;
 import helperMethods.LevelBuilder;
 import main.Game;
 import managers.TileManager;
+import userInterface.DevLevelBuilder;
+import userInterface.MyButton;
 
 public class Playing extends GameScene implements SceneMethods {
 	
 	private int[][] level;
 	private TileManager tileManager;
 	
+	private DevLevelBuilder devLevelBuilder;
 	
 	public Playing(Game game) {
 		super(game);
@@ -19,8 +22,11 @@ public class Playing extends GameScene implements SceneMethods {
 		level = LevelBuilder.getLevelData();
 		//Tile manager
 		tileManager = new TileManager();
+		//Level builder
+		devLevelBuilder = new DevLevelBuilder(0, 640, 640, 100);
 		
 	}
+
 
 	@Override
 	public void render(Graphics g) {
@@ -32,7 +38,9 @@ public class Playing extends GameScene implements SceneMethods {
 			}
 		}
 		
+		devLevelBuilder.draw(g);
 	}
+
 
 	@Override
 	public void mouseClicked(int x, int y) {
