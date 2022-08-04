@@ -65,9 +65,23 @@ public class DevLevelBuilder {
 	}
 	
 	private void drawTileButtons(Graphics g) {
-		for(MyButton b : tileButtons)
+		for(MyButton b : tileButtons) {
+			
+			//Sprite image
 			g.drawImage(getButtonImg(b.getId()), b.x, b.y, b.width, b.height, null);
+			
 		
+			//mouse over
+			if(b.isMouseOver()) {
+				g.setColor(Color.white);
+			}else {
+				g.setColor(Color.black);
+			}
+			g.drawRect(b.x, b.y, b.width, b.height);
+		
+			//Mouse pressed
+		
+		}
 		
 	}
 
@@ -84,15 +98,36 @@ public class DevLevelBuilder {
 
 	public void mouseMoved(int x, int y) {
 		buttonMenu.setMouseOver(false);
+		
+		for(MyButton b : tileButtons) {
+			b.setMouseOver(false);
+		}
+		
 		if (buttonMenu.getBounds().contains(x, y))
 			buttonMenu.setMouseOver(true);
+		else {
+			for(MyButton b : tileButtons) {
+				if (buttonMenu.getBounds().contains(x, y)) {
+					b.setMouseOver(true);
+					return;
+				}
+			}
+		}
 		
 		
 	}
 
 	public void mousePressed(int x, int y) {
+		
+		
 		if (buttonMenu.getBounds().contains(x, y))
 			buttonMenu.setMousePressed(true);
+		else {
+			for(MyButton b : tileButtons) {
+				b.setMousePressed(true);
+				return;
+			}
+		}
 		
 	}
 	
